@@ -5,9 +5,9 @@ $(document).ready(function(){
 
 // Needed variables
 
-var prevBtn = $(".prev"); // Left arrow  <
+var prevBtn = $(".prev"); // Left arrow <
 
-var nextBtn = $(".next"); // Right arrow  >
+var nextBtn = $(".next"); // Right arrow >
 
 
 
@@ -26,6 +26,22 @@ prevBtn.click(function(){
 })
 
 
+    // Keyboard Navigation
+$(document).keydown(function(event){
+    console.log("Click using a keyboard!");
+    console.log(event.keyCode); //What button have I pressed? 
+                                // Each one has a different number so I can recognize them
+
+    if(event.keyCode === 37) {
+        nextPrevSlidev("prev");
+    } else if 
+        (event.keyCode === 39) {
+         nextPrevSlidev("next");
+        }
+    
+});
+
+
     //End doc ready
 });
 
@@ -38,22 +54,24 @@ prevBtn.click(function(){
  * 
  *******************************************************/
 
-function nextPrevSlidev (direction) {
+
+function nextPrevSlidev (direction) { // ---> direction is my parametre
     var activeImage = $(".images img.active"); // This is the image that currently has "active" class
-    var activeCircle = $(".nav i.active"); // Same as above
+    var activeCircle = $(".nav i.active"); // Same as above (icon)
 
     // Reset
     activeImage.removeClass("active"); // Don't want two active classes so I'm removing one of them
-    activeCircle.removeClass("active"); //Same as above
+    activeCircle.removeClass("active"); //Same as above (icon)
 
-    // Next
+    // Next - Right arrow >
 
-    if(direction === "next"){
+    if(direction === "next"){ //If my parametre is equal to "next"
+            // If so...
 
-        if(activeImage.hasClass("last")){
+        if(activeImage.hasClass("last")) { //Have I reached the end of my list?
 
-            $(".images img.first").addClass("active");
-            $(".nav i.first").addClass("active");
+            $(".images img.first").addClass("active"); //img.first - first item of the list - it's possible to create a variable containing it as well
+            $(".nav i.first").addClass("active"); //same as above (icon)
 
         } else
 
@@ -61,10 +79,11 @@ function nextPrevSlidev (direction) {
         activeCircle.next("i").addClass("active");
     }
 
-    // Prev
-        else if(direction === "prev") {
+    // Prev -  Left arrow <
+
+        else if(direction === "prev") { // If my parametre is equal to "prev"
             if(activeImage.hasClass("first")){
-                $("images img.last").addClass("active");
+                $(".images img.last").addClass("active");
                 $(".nav i.last").addClass("active");
 
             } else {
